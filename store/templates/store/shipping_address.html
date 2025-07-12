@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Kargo Adresini Gir</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Adres</label>
+            {{ form.address }}
+        </div>
+        <div class="mb-3">
+            <label for="id_address_line2" class="form-label">Adres Satırı 2</label>
+            {{ form.address_line2 }}
+        </div>
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Şehir</label>
+            {{ form.city }}
+        </div>
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Posta Kodu</label>
+            {{ form.postal_code }}
+        </div>
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Telefon Numarası</label>
+            {{ form.phone_number }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+
+{% endblock %}

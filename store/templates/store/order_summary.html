@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Sipariş Özeti</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Adet</th>
+            <th>Birim Fiyatı</th>
+            <th>Ara Toplam</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price|floatformat:2 }} ₺</td>
+            <td>{{ item.subtotal|floatformat:2 }} ₺</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Toplam Tutar: {{ total|floatformat:2 }} ₺</h3>
+
+<a href="{% url 'store:home' %}" class="btn btn-primary">Alışverişe Devam Et</a>
+{% endblock %}

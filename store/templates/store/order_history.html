@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Sipariş Geçmişi</h2>
+
+{% if orders %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sipariş ID</th>
+            <th>Tarih</th>
+            <th>Durum</th>
+            <th>Tutar</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>#{{ order.id }}</td>
+            <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.total_price }} ₺</td>
+            <td><a href="{% url 'store:order_summary' order.id %}" class="btn btn-sm btn-primary">Görüntüle</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Henüz siparişiniz yok.</p>
+{% endif %}
+
+{% endblock %}

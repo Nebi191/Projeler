@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Adresiniz başarıyla kaydedildi!</h2>
+  <p>Alışverişe devam edebilirsiniz.</p>
+  <a href="{% url 'store:home' %}" class="btn btn-primary">Ana Sayfa</a>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h2>Sepetiniz</h2>
+
+{% if cart_items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th>Adet</th>
+                <th>Ara Toplam</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                
+                
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.subtotal }} ₺</td>
+                <td>
+                <a href="{% url 'store:remove_from_cart' item.product.id %}" class="btn btn-danger btn-sm">Sil</a>                
+                <a href="{% url 'store:increase_quantity' item.product.id %}" class="btn btn-success btn-sm">+</a>
+                <a href="{% url 'store:decrease_quantity' item.product.id %}" class="btn btn-warning btn-sm">-</a>
+                
+                </td>
+                <a href="{% url 'store:shipping_address' %}" class="btn btn-success">Ödeme Yap</a>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'store:clear_cart'%}" class="btn btn-warning">Sepeti Boşalt</a>
+
+    <h4>Toplam: {{ total }} ₺</h4>
+{% else %}
+    <p>Sepetiniz boş.</p>
+{% endif %}
+{% endblock %}
